@@ -83,6 +83,11 @@ export async function readyBundlr(bytes, jwk) {
 			res.json()
 		);
 
+		if (!arBalance) {
+			console.log(clc.redBright('Ar Balance is zero, fund your wallet address with Ar.', error));
+			return false;
+		}
+
 		// calculate fundAmt as a % of arBalance
 		const fundAmtPercent = fundAmt.dividedBy(arBalance).multipliedBy(100).toFixed(2);
 
