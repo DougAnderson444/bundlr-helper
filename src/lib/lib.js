@@ -61,6 +61,9 @@ export async function readyBundlr(bytes, jwk) {
 
 	console.log(`Total Size ${bytes} bytes (${convertBytes(bytes)})`);
 
+	// Only need to be concerned about anything over 100kb
+	if (bytes < 100000) return true;
+
 	const price = await bundlr.getPrice(bytes);
 	const amount = bundlr.utils.unitConverter(price);
 
